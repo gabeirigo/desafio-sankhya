@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Desafio Controle Financeiro</title>
+
+<!-- BOOTSTRAP CSS E JQUERY -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous" />
+ <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	crossorigin="anonymous"></script>
+
+<!-- FONT AWESOME -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+<!-- STYLE CSS -->
+<link rel="stylesheet" href="css/style.css" />
+
+ <!-- SCRIPTS  -->
+ <script src="js/scripts.js"></script>
+
+  <!-- CHART  -->
+ 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+ <script src="js/chart.js"></script>
+ 
+</head>
+
+<body>
+
+	<section class="container financeiro">
+
+		<header class="section_title">
+			<h1>Controle Financeiro</h1>
+		</header>
+
+		<a href="/novo" class="btn btn-info"> <span
+			class="fa fa-plus-circle"></span> Novo Lançamento
+		</a>
+
+		<div class="row">
+			<!-- LISTA DE FINANÇAS -->
+			<div class="col-md-6">
+				<div class="content_table">
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Descrição</th>
+							<th scope="col">Vencimento</th>
+							<th scope="col">Valor</th>
+							<th scope="col">Tipo</th>
+							<th scope="col">Deletar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="financa : ${financas}">
+							<td scope="col" th:text="${financa.descricao}"></td>
+							<td scope="col" th:text="${financa.dataVencimento}" class="date"></td>
+							<td scope="col">R$ <span th:text="${financa.valor}" class="valor"></span></td>
+							<td scope="col" th:text="${financa.tipo}"></td>
+							<td scope="col" class="text-center">
+								<a th:href="${(#mvc.url('FC#deletar').arg(0, financa.id )).build()}" class="btn_delete"><span class="fa fa-trash-o"></span></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+			<!-- GRÁFICO DE FINANÇAS -->
+			<div class="col-md-6 justify-content-center">
+				<div id="chart_div"></div>
+			</div>
+
+		</div>
+	</section>
+
+
+	<footer class="text-center">
+		<p>
+			Desafio - Controle Financeiro <img src="img/sankhya.png"
+				alt="Sankhya" title="Sankhya" width="140" />
+		</p>
+	</footer>
+
+
+</body>
+
+</html>
