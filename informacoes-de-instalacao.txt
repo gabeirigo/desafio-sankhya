@@ -1,0 +1,3 @@
+Crie um banco de dados chamado desafio-financeiro
+
+Rode como Java Application (Aplicação já está com servidor embutido)
