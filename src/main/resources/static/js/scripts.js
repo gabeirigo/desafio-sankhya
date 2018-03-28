@@ -12,11 +12,14 @@ $(function() {
 	// FUNCÃO PARA FORMATAR DATA
 	function formatDate(dateObject) {
 	    var d = new Date(dateObject);
-	    var day = d.getDate();
+	    var day = d.getDate() + 1;
 	    var month = d.getMonth() + 1;
 	    var year = d.getFullYear();
 	    if (day < 10) {
 	        day = "0" + day;
+	    }
+	    if(day == 32) {
+	    	day = 1
 	    }
 	    if (month < 10) {
 	        month = "0" + month;
