@@ -1,18 +1,13 @@
 $(function() {
 
 	// FORMATAR MOEDA
-	var valor = $('.valor').html();
-	valor = valor.replace(".", ",");
-	$('.valor').html(valor);
-
-	// FORMATAR DATA	
-	$('.date').each(function () {
-		var data = new Date(this.value);
-		this.value = [data.getDate(), data.getMonth() + 1, data.getFullYear()].join('/');
-	});
-
-
-	// FUNCÃO PARA FORMATAR DATA
+	$('tr').each(function() {
+		var valor = $(this).find('.valor').html();
+		valor = valor.replace(".", ",");
+		$(this).find('.valor').html(valor);
+	})
+	
+	
 	function formatDate(date) {
 		var d = new Date(date),
 		month = '' + (d.getMonth() + 1),
@@ -25,7 +20,15 @@ $(function() {
 		return [day, month, year].join('/');
 	}
 
-	var dataFormatada = formatDate($('.date').html());
-	$('.date').html(dataFormatada);
+	// FORMATAR DATA	
+	$('tr').each(function () {
+		var data = new Date($('.date').value);
+		this.value = [data.getDate(), data.getMonth() + 1, data.getFullYear()].join('/');
+
+		var dataFormatada = formatDate($('.date').html());
+		$('.date').html(dataFormatada);
+	});
+
+	
 
 });
