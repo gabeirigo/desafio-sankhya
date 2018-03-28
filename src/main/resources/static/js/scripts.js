@@ -1,13 +1,13 @@
 $(function() {
 
 	// FORMATAR MOEDA
-	$('tr').each(function () {
-		var valor = $(this).find('.valor').text();
+	$('tr').each(function() {
+		var valor = $(this).find('.valor').html();
 		valor = valor.replace(".", ",");
-		$(this).find('.valor').text(valor);
+		$(this).find('.valor').html(valor);
 	})
-
-	// FUNCÃO PARA FORMATAR DATA
+	
+	
 	function formatDate(date) {
 		var d = new Date(date),
 		month = '' + (d.getMonth() + 1),
@@ -19,12 +19,16 @@ $(function() {
 
 		return [day, month, year].join('/');
 	}
-	
-	$('tr').each(function() {
-		var recebeData = $(this).find('.date').text();
-		dataFormatada = formatDate(recebeData);
-		$(this).find('.date').text(dataFormatada);
-	})
 
+	// FORMATAR DATA	
+	$('tr').each(function () {
+		var data = new Date($('.date').value);
+		this.value = [data.getDate(), data.getMonth() + 1, data.getFullYear()].join('/');
+
+		var dataFormatada = formatDate($('.date').html());
+		$('.date').html(dataFormatada);
+	});
+
+	
 
 });
