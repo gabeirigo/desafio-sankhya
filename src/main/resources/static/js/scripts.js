@@ -1,5 +1,4 @@
 $(function() {
-
 	$('.money').mask('000.000.000.000.000,00', {reverse: true});
 
 	// FORMATAR MOEDA
@@ -27,7 +26,4 @@ $(function() {
 		dataFormatada = formatDate(recebeData);
 		$(this).find('.date').text(dataFormatada);
 	})
-
-	
-
 });
