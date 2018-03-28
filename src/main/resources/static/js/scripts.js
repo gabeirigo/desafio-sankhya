@@ -1,5 +1,4 @@
 $(function() {
-
 	$('.money').mask('000.000.000.000.000,00', {reverse: true});
 
 	// FORMATAR MOEDA
@@ -13,7 +12,7 @@ $(function() {
 	function formatDate(date) {
 		var d = new Date(date),
 		month = '' + (d.getMonth() + 1),
-		day = '' + d.getDate(),
+		day = '' + (d.getDate() + 1),
 		year = d.getFullYear();
 
 		if (month.length < 2) month = '0' + month;
@@ -27,7 +26,4 @@ $(function() {
 		dataFormatada = formatDate(recebeData);
 		$(this).find('.date').text(dataFormatada);
 	})
-
-	
-
 });
