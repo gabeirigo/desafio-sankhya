@@ -1,13 +1,15 @@
 $(function() {
 
+	$('.money').mask('000.000.000.000.000,00', {reverse: true});
+
 	// FORMATAR MOEDA
-	$('tr').each(function() {
-		var valor = $(this).find('.valor').html();
+	$('tr').each(function () {
+		var valor = $(this).find('.valor').text();
 		valor = valor.replace(".", ",");
-		$(this).find('.valor').html(valor);
+		$(this).find('.valor').text(valor);
 	})
-	
-	
+
+	// FUNCÃO PARA FORMATAR DATA
 	function formatDate(date) {
 		var d = new Date(date),
 		month = '' + (d.getMonth() + 1),
@@ -19,15 +21,12 @@ $(function() {
 
 		return [day, month, year].join('/');
 	}
-
-	// FORMATAR DATA	
-	$('tr').each(function () {
-		var data = new Date($('.date').value);
-		this.value = [data.getDate(), data.getMonth() + 1, data.getFullYear()].join('/');
-
-		var dataFormatada = formatDate($('.date').html());
-		$('.date').html(dataFormatada);
-	});
+	
+	$('tr').each(function() {
+		var recebeData = $(this).find('.date').text();
+		dataFormatada = formatDate(recebeData);
+		$(this).find('.date').text(dataFormatada);
+	})
 
 	
 
